@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-splash',
@@ -8,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SplashPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await SplashScreen.show({
+      autoHide: true,
+    });
+
+    setTimeout(async () => {
+      await SplashScreen.hide();
+      this.router.navigateByUrl('/login', { replaceUrl: true });
+    }, 2000);
   }
-
 }
