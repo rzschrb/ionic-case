@@ -33,6 +33,7 @@ ionic cap sync
 ```bash
 npm start
 ```
+- Você também pode `Inspecionar Elemento` e simular o app em um dispositivo iOS ou Android.
 ### Build iOS
 ```bash
 ionic cap add ios
