@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="title-container ion-text-center ion-padding-vertical">
+    <h1>Bem-vindo ao Dashboard!</h1>
+  </div>
+
+  <ion-alert
+    [isOpen]="isAlertOpen"
+    [header]="productHeader"
+    [message]="productMessage"
+    [buttons]="alertButtons"
+    (didDismiss)="setIsAlertOpen(false)"
+  ></ion-alert>
+
+  <ion-list>
+    <ion-list-header class="ion-no-padding">
+      <div class="ion-align-items-center" style="display: flex; margin-bottom: 0.5rem;">
+        <ion-label>Nossos Produtos</ion-label>
+        <ion-badge color="primary">{{ items.length }}</ion-badge>
+      </div>
+    </ion-list-header>
+
+    <ion-item *ngFor="let item of items" (click)="onClick(item)" button>
+      <ion-label>{{ item.name }}</ion-label>
+      <ion-note slot="end" color="medium">{{ item.id }}</ion-note>
+    </ion-item>
+  </ion-list>
 </ion-content>

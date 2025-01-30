@@ -1,13 +1,57 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="title-container ion-text-center ion-padding-vertical">
+    <h1>Login</h1>
+  </div>
+
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-list class="ion-padding">
+        <ion-item>
+          <ion-input
+            type="email"
+            name="email"
+            labelPlacement="stacked"
+            label="Email"
+            helperText="Use um email valido"
+            [errorText]="showEmailErrors && loginForm.get('email')?.errors ? getEmailErrorMessage() : ''"
+            formControlName="email"
+            (ionBlur)="onFieldBlur($event)">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input
+            type="password"
+            name="password"
+            formControlName="password"
+            label="Senha"
+            helperText="Senha deve conter pelo menos 6 caracteres"
+            [errorText]="showPasswordErrors && loginForm.get('password')?.errors ? getPasswordErrorMessage() : ''"
+            labelPlacement="stacked"
+            (ionBlur)="onFieldBlur($event)">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-alert
+        [isOpen]="isAlertOpen"
+        header="Erro de Validação"
+        message="Por favor, corrija os erros no formulário antes de continuar."
+        [buttons]="alertButtons"
+        (didDismiss)="setIsAlertOpen(false)"
+      ></ion-alert>
+
+      <div class="ion-padding">
+        <ion-button
+          type="submit"
+          expand="block"
+          size="medium"
+          shape="round">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          Login
+        </ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>

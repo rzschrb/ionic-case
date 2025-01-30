@@ -1,0 +1,30 @@
+.title-container {
+  margin-top: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ion-color-dark);
+  }
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+
+  form {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+ion-input {
+  margin-bottom: 1.5rem;
+}
+
+ion-button {
+  margin-top: 1rem;
+}
