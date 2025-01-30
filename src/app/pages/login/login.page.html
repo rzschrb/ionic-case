@@ -13,7 +13,7 @@
             labelPlacement="stacked"
             label="Email"
             helperText="Use um email valido"
-            [errorText]="showEmailErrors && loginForm.get('email')?.errors ? getEmailErrorMessage() : ''"
+            [errorText]="(showEmailErrors || isSubmitted) && loginForm.get('email')?.errors ? getEmailErrorMessage() : ''"
             formControlName="email"
             (ionBlur)="onFieldBlur($event)">
           </ion-input>
@@ -26,7 +26,7 @@
             formControlName="password"
             label="Senha"
             helperText="Senha deve conter pelo menos 6 caracteres"
-            [errorText]="showPasswordErrors && loginForm.get('password')?.errors ? getPasswordErrorMessage() : ''"
+            [errorText]="(showPasswordErrors || isSubmitted) && loginForm.get('password')?.errors ? getPasswordErrorMessage() : ''"
             labelPlacement="stacked"
             (ionBlur)="onFieldBlur($event)">
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>

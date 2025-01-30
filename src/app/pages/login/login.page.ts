@@ -14,6 +14,7 @@ export class LoginPage {
   showPasswordErrors = false;
   isAlertOpen = false;
   alertButtons = ['OK'];
+  isSubmitted = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
@@ -62,14 +63,19 @@ export class LoginPage {
   }
 
   login() {
-    this.showEmailErrors = true;
-    this.showPasswordErrors = true;
+    this.isSubmitted = true;
 
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password);
     } else {
       this.setIsAlertOpen(true);
+      Object.keys(this.loginForm.controls).forEach(key => {
+        const control = this.loginForm.get(key);
+        if (control?.errors) {
+          control.markAsTouched();
+        }
+      });
     }
   }
 }
